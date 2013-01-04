@@ -1,0 +1,96 @@
+Imports Windows.UI.Xaml.DispatcherTimer
+' The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+ 
+''' <summary>
+''' An empty page that can be used on its own or navigated to within a Frame.
+''' </summary>
+ 
+Public NotInheritable Class MainPage
+    Inherits Page
+ 
+    ''' <summary>
+    ''' Invoked when this page is about to be displayed in a Frame.
+    ''' </summary>
+    ''' <param name="e">Event data that describes how this page was reached.  The Parameter
+    ''' property is typically used to configure the page.</param>
+ 
+ 
+    Protected Overrides Sub OnNavigatedTo(e As Navigation.NavigationEventArgs)
+        'hi()
+        txtTime.Text = System.DateTime.Now.ToString("hh:mm")
+        txtDate.Text = System.DateTime.Now.ToString("dddd, MMMM d, yyyy")
+        dispatchTimeTick()
+        If Integer.Parse(System.DateTime.Now.Hour.ToString) > 12 Then
+            txtAmPm.Text = "pm"
+        Else
+            txtAmPm.Text = "am"
+        End If
+    End Sub
+ 
+    Protected Async Sub hi()
+        Dim msgDlg As New Windows.UI.Popups.MessageDialog("Hi hello")
+        msgDlg.DefaultCommandIndex = 0
+        Await msgDlg.ShowAsync
+    End Sub
+ 
+    Protected Sub dispatchTimeTick()
+        Dim dp As New DispatcherTimer
+        AddHandler dp.Tick, AddressOf ticking
+        dp.Interval = New TimeSpan(0, 0, 0, 1, 0)
+        dp.Start()
+    End Sub
+ 
+    Sub ticking()
+        txtTime.Text = System.DateTime.Now.ToString("hh:mm")
+        'txtDate.Text = System.DateTime.Now.Hour.ToString
+        If Integer.Parse(System.DateTime.Now.Hour.ToString) > 12 Then
+            txtAmPm.Text = "pm"
+        Else
+            txtAmPm.Text = "am"
+        End If
+    End Sub
+ 
+    Private Sub sliderBrightness_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderBrightness.ValueChanged
+        txtDate.Foreground = New SolidColorBrush(Windows.UI.Color.FromArgb((sliderBrightness.Value / 100) * 255, 255, 255, 255))
+        txtTime.Foreground = New SolidColorBrush(Windows.UI.Color.FromArgb((sliderBrightness.Value / 100) * 255, 255, 255, 255))
+        txtAmPm.Foreground = New SolidColorBrush(Windows.UI.Color.FromArgb((sliderBrightness.Value / 100) * 255, 255, 255, 255))
+        sliderBrightness.Foreground = New SolidColorBrush(Windows.UI.Color.FromArgb((sliderBrightness.Value / 100) * 255, 255, 255, 255))
+    End Sub
+ 
+    Private Sub changeColor0(sender As Object, e As RoutedEventArgs)
+        back.Background = color0.Background
+        mainStackPanal.Background = color0.Background
+        bottomAppBar.Background = color0.Background
+        bottomAppBar.Opacity = 0.9
+    End Sub
+    Private Sub changeColor1(sender As Object, e As RoutedEventArgs)
+        back.Background = color1.Background
+        mainStackPanal.Background = color1.Background
+        bottomAppBar.Background = color1.Background
+        bottomAppBar.Opacity = 0.9
+    End Sub
+    Private Sub changeColor2(sender As Object, e As RoutedEventArgs)
+        back.Background = color2.Background
+        mainStackPanal.Background = color2.Background
+        bottomAppBar.Background = color2.Background
+        bottomAppBar.Opacity = 0.9
+    End Sub
+    Private Sub changeColor3(sender As Object, e As RoutedEventArgs)
+        back.Background = color3.Background
+        mainStackPanal.Background = color3.Background
+        bottomAppBar.Background = color3.Background
+        bottomAppBar.Opacity = 0.9
+    End Sub
+    Private Sub changeColor4(sender As Object, e As RoutedEventArgs)
+        back.Background = color4.Background
+        mainStackPanal.Background = color4.Background
+        bottomAppBar.Background = color4.Background
+        bottomAppBar.Opacity = 0.9
+    End Sub
+    Private Sub changeColor5(sender As Object, e As RoutedEventArgs)
+        back.Background = color5.Background
+        mainStackPanal.Background = color5.Background
+        bottomAppBar.Background = color5.Background
+        bottomAppBar.Opacity = 0.9
+    End Sub
+End Class
